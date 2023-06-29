@@ -1,0 +1,146 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Kullanici.master.cs" Inherits="Kullanici" %>
+
+<!DOCTYPE html>
+<html>
+<head runat="server">
+    <title></title>
+    <link href="KullaniciTasarim.css" rel="stylesheet" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <style type="text/css">
+        *{
+            background:;
+        }
+
+        .auto-style1 {
+            width: 100%;
+            background-color: #fff;
+            height: 50px;
+        }
+
+        .auto-style2 {
+            text-align: center;
+            font-weight: bold;
+            background-color: #eea4a4;
+        }
+
+        .auto-style3 {
+            text-align: center;
+        }
+
+        .auto-style4 {
+            font-size: large;
+        }
+
+        .auto-style5 {
+            width: 700px;
+            height: 50px;
+        }
+
+        .auto-style6 {
+            width: 100%;
+        }
+
+        .auto-style9 {
+            font-size: x-large;
+            background-color: white;
+            color: red;
+            text-align: left;
+        }
+
+        .auto-style10 {
+            font-size: x-large;
+            color: #FF3300;
+        }
+
+        .auto-style8 {
+            color: #FFFFFF;
+        }
+
+        .auto-style11 {
+            color: #FF9900;
+        }
+
+        .auto-style12 {
+            color: #CCFFFF;
+        }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div style="height: 200px; width: 700px; margin-left: 400px; background-color: #ce7171;">
+            <asp:Image ID="Image1" runat="server" Height="200px" ImageUrl="~/Banner Foto/yemek-tarifiii.png" Width="700px" />
+        </div>
+        <div style="margin-left: 400px; width: 700px; height: 20px;"></div>
+        <div style="margin-left: 400px; background-color: #fff;" class="auto-style5">
+            <table class="auto-style1">
+                <%-- Source->İnsert Table ile Menübari Otomatik Böleriz! --%>
+                <tr>
+                    <td class="auto-style2"><a href="AnaSayfa.aspx">ANA SAYFA</a></td>
+                    <td class="auto-style2"><a href="GununYemegi.aspx">GÜNÜN YEMEĞİ</a></td>
+                    <td class="auto-style2"><a href="TarifOner.aspx">TARİF ÖNER</a></td>
+                    <td class="auto-style2"><a href="Hakkimizda.aspx">HAKKIMIZDA</a></td>
+                    <td class="auto-style2"><a href="Iletisim.aspx">İLETİŞİM</a></td>
+                </tr>
+            </table>
+        </div>
+        <div style="margin-left: 400px; width: 700px; height: 20px;"></div>
+        <div style="margin-left: 400px; width: 700px; height: 300px;">
+            <div style="width: 200px; height: auto; background-color: #ce7171; float: left;">
+                <div class="auto-style3">
+                    <strong><span class="auto-style4">KATEGORİLER</span></strong><br />
+                    <br />
+                </div>
+                <asp:DataList ID="DataList1" runat="server" Width="200px">
+                    <ItemTemplate>
+                        <div style="border: thin solid #CCCCCC">
+                            <a href="KategoriDetay.aspx?Kategoriid=<%# Eval("Kategoriid") %>"><strong>
+                                <asp:Label ID="Label1" runat="server" CssClass="auto-style12" Text='<%# Eval("KategoriAd") %>'></asp:Label>
+                            </strong><span class="auto-style11">(</span>
+                                <asp:Label ID="Label2" runat="server" Text='<%# Eval("KategoriAdet") %>' CssClass="auto-style12"></asp:Label>
+                            </a>
+                            <span class="auto-style11">)</span>
+                        </div>
+                    </ItemTemplate>
+                </asp:DataList>
+            </div>
+            <div style="width: 450px; height: auto; background-color: #ce7171; float: left; margin-left: 50px;">
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    <asp:DataList ID="DataList2" runat="server">
+                        <ItemTemplate>
+                            <table class="auto-style6">
+                                <tr>
+                                    <td class="auto-style9"><a href="YemekDetay.Aspx?Yemekid=<%# Eval("Yemekid")%>"><strong><%--Eval Yemekid yaptık kı AnaSayfada Hangi yemege tıklarsak onun id'si oluşsun diye.--%>
+                                        <asp:Label ID="Label3" runat="server" CssClass="auto-style10" Text='<%# Eval("YemekAd") %>'></asp:Label>
+                                    </strong></a></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Malzemeler :</strong>
+                                        <asp:Label ID="Label4" runat="server" Text='<%# Eval("YemekMalzeme") %>'></asp:Label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Yemek Tarifi :</strong>
+                                        <asp:Label ID="Label5" runat="server" Text='<%# Eval("YemekTarif") %>'></asp:Label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Eklenme Tarihi :</strong>
+                                        <asp:Label ID="Label6" runat="server" Text='<%# Eval("YemekTarih") %>' CssClass="auto-style8"></asp:Label>
+                                        <strong>- Puan :</strong> <em>
+                                            <asp:Label ID="Label7" runat="server" Text='<%# Eval("YemekPuan") %>' CssClass="auto-style8"></asp:Label>
+                                        </em></td>
+                                </tr>
+                                <tr>
+                                    <td style="border-bottom-style: groove; border-bottom-width: thick; border-bottom-color: #808080"></td>
+                                </tr>
+                            </table>
+                        </ItemTemplate>
+                    </asp:DataList>
+                </asp:ContentPlaceHolder>
+            </div>
+        </div>
+    </form>
+</body>
+</html>
+
